@@ -1,0 +1,4 @@
+name: SoloCore
+version: '${version}'
+main: me.guayabita.SoloCore
+api-version: '1.20'
