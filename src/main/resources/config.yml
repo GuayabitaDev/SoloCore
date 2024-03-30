@@ -1,0 +1,8 @@
+STATS:
+  initial-strength: 10
+  initial-defense: 10
+  inital-agility: 10
+  initial-mana: 10.0
+
+MANA:
+  mana-regen: 0.5

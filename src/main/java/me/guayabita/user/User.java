@@ -22,10 +22,10 @@ public class User {
 	public User(SoloCore plugin, UUID uuid, String name) {
 		this.uuid = uuid;
 		this.name = name;
-		this.strength = plugin.getConfigFile().getInt("initial-strength");
-		this.defense = plugin.getConfigFile().getInt("initial-defense");
-		this.agility = plugin.getConfigFile().getInt("initial-agility");
-		this.mana = plugin.getConfigFile().getDouble("initial-mana");
+		this.strength = plugin.getConfigFile().getInt("STATS.initial-strength");
+		this.defense = plugin.getConfigFile().getInt("STATS.initial-defense");
+		this.agility = plugin.getConfigFile().getInt("STATS.initial-agility");
+		this.mana = plugin.getConfigFile().getDouble("STATS.initial-mana");
 	}
 
 	public User(String name) {

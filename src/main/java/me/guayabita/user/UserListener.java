@@ -7,7 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -24,7 +23,9 @@ public class UserListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	private void onAsyncUserPreLogin(AsyncPlayerPreLoginEvent event) {
 		User user = userManager.createUser(event.getUniqueId(), event.getName());
+		System.out.println("User created: " + user.getName());
 		userManager.loadUser(user, false);
+		System.out.println("User loaded: " + user.getName());
 	}
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
@@ -33,15 +34,9 @@ public class UserListener implements Listener {
 
 		if (user == null) {
 			event.setResult(PlayerLoginEvent.Result.KICK_OTHER);
-			event.setKickMessage(ChatUtil.translate(plugin.getMessagesFile().getString("kick-messages.failed-to-load-user")));
+			event.setKickMessage(ChatUtil.translate(plugin.getMessagesFile().getString("SYSTEM.LOAD-DATA")));
 		}
 	}
-
-	@EventHandler
-	private void onUserJoin(PlayerJoinEvent event) {
-
-	}
-
 
 	@EventHandler
 	private void onUserQuit(PlayerQuitEvent event) {
@@ -51,6 +46,7 @@ public class UserListener implements Listener {
 		if (user != null) {
 			userManager.saveUser(user, true, true);
 			userManager.destroyUser(user);
+			System.out.println("User destroyed: " + user.getName());
 		}
 	}
 }

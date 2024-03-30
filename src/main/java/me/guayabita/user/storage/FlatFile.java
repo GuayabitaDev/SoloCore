@@ -49,7 +49,7 @@ public class FlatFile implements IUser {
 
 	@Override
 	public void loadUser(User user, boolean byName) {
-		ConfigurationSection section = userDataFile.getConfiguration().getConfigurationSection("users." + user.getName());
+		ConfigurationSection section = userDataFile.getConfiguration().getConfigurationSection("users." + user.getUuid());
 
 		if (section == null) {
 			this.saveUser(user, true);
@@ -60,10 +60,10 @@ public class FlatFile implements IUser {
 	}
 
 	public void loadUser(User user, ConfigurationSection section) {
-		user.setStrength(section.getInt("strength"));
-		user.setDefense(section.getInt("defense"));
-		user.setAgility(section.getInt("agility"));
-		user.setMana(section.getDouble("mana"));
+		user.setStrength(section.getInt(".strength"));
+		user.setDefense(section.getInt(".defense"));
+		user.setAgility(section.getInt(".agility"));
+		user.setMana(section.getDouble(".mana"));
 	}
 
 	@Override
@@ -76,14 +76,12 @@ public class FlatFile implements IUser {
 
 	public void toSavable(User user, boolean forceSave) {
 		ConfigurationSection section = userDataFile.getConfiguration().getConfigurationSection("users");
-
 		if (section == null) return;
-
-		String userName = user.getName();
-		section.set(userName + "strength", user.getStrength());
-		section.set(userName + "defense", user.getDefense());
-		section.set(userName + "agility", user.getAgility());
-		section.set(userName + "mana", user.getMana());
+		String UUID = user.getUuid().toString();
+		section.set(UUID + ".strength", user.getStrength());
+		section.set(UUID + ".defense", user.getDefense());
+		section.set(UUID + ".agility", user.getAgility());
+		section.set(UUID + ".mana", user.getMana());
 		if (forceSave) userDataFile.save();
 	}
 }
