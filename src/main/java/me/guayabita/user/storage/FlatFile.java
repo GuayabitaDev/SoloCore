@@ -63,8 +63,7 @@ public class FlatFile implements IUser {
 		user.setStrength(section.getInt("strength"));
 		user.setDefense(section.getInt("defense"));
 		user.setAgility(section.getInt("agility"));
-		user.setIntelligence(section.getInt("intelligence"));
-		user.setPerception(section.getInt("perception"));
+		user.setMana(section.getDouble("mana"));
 	}
 
 	@Override
@@ -84,8 +83,7 @@ public class FlatFile implements IUser {
 		section.set(userName + "strength", user.getStrength());
 		section.set(userName + "defense", user.getDefense());
 		section.set(userName + "agility", user.getAgility());
-		section.set(userName + "intelligence", user.getIntelligence());
-		section.set(userName + "perception", user.getPerception());
+		section.set(userName + "mana", user.getMana());
 		if (forceSave) userDataFile.save();
 	}
 }

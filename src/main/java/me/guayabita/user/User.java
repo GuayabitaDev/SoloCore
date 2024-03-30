@@ -17,8 +17,7 @@ public class User {
 	private int strength;
 	private int defense;
 	private int agility;
-	private int intelligence;
-	private int perception;
+	private double mana;
 
 	public User(SoloCore plugin, UUID uuid, String name) {
 		this.uuid = uuid;
@@ -26,8 +25,7 @@ public class User {
 		this.strength = plugin.getConfigFile().getInt("initial-strength");
 		this.defense = plugin.getConfigFile().getInt("initial-defense");
 		this.agility = plugin.getConfigFile().getInt("initial-agility");
-		this.intelligence = plugin.getConfigFile().getInt("initial-intelligence");
-		this.perception = plugin.getConfigFile().getInt("initial-perception");
+		this.mana = plugin.getConfigFile().getDouble("initial-mana");
 	}
 
 	public User(String name) {
@@ -58,20 +56,12 @@ public class User {
 		this.agility -= amount;
 	}
 
-	public void addIntelligence(int amount) {
-		this.intelligence += amount;
+	public void addMana(double amount) {
+		this.mana += mana;
 	}
 
-	public void removeIntelligence(int amount) {
-		this.intelligence -= amount;
-	}
-
-	public void addPerception(int amount) {
-		this.perception += amount;
-	}
-
-	public void removePerception(int amount) {
-		this.perception -= amount;
+	public void removeMana(double mana) {
+		this.mana -= mana;
 	}
 
 	public Player getPlayer() {
